@@ -30,7 +30,16 @@ $env:GEMINI_API_KEY = "API_KEY_MILIKMU"
 npm.cmd start
 ```
 
-Kemudian buka `http://localhost:3000`. Opsional: atur `GEMINI_MODEL` atau `PORT` melalui environment variable. Server membaca hanya `GEMINI_API_KEY` dari `secret/.env`; file `.env.example` tidak dibaca otomatis.
+Kemudian buka `http://localhost:3000`. Secara default, server memakai `gemini-3.8-flash`. Untuk memilih model lain, atur `GEMINI_MODEL` ke ID model yang tersedia dan mendukung `generateContent` untuk API key-mu; model Gemini 2.5 dapat dibatasi untuk pengguna yang pernah menggunakannya. Untuk mengganti model di PowerShell:
+
+```powershell
+$env:GEMINI_MODEL = "gemini-3.8-flash"
+npm.cmd start
+```
+
+Jika server masih menampilkan model lama, cek dan perbarui atau hapus override `GEMINI_MODEL` pada environment tempat server dijalankan, lalu restart server. `PORT` juga dapat diatur melalui environment variable. Server membaca hanya `GEMINI_API_KEY` dari `secret/.env`; file `.env.example` tidak dibaca otomatis.
+
+Jika analisis gagal, periksa pesan status di aplikasi: masalah API key atau akses ditandai terpisah dari kuota dan model yang tidak ditemukan. Pastikan API key aktif dan diizinkan memakai Gemini API, lalu pastikan nama model pada `GEMINI_MODEL` tersedia untuk key tersebut. Gangguan layanan Gemini dapat dicoba kembali beberapa saat kemudian.
 
 ## Privasi dan batasan
 

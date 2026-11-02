@@ -9,7 +9,7 @@ const MAX_MESSAGE_LENGTH = 3000;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 12;
 const requestsByAddress = new Map();
-const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+const model = process.env.GEMINI_MODEL || "gemini-3.8-flash";
 
 function loadLocalGeminiApiKey() {
   const filePath = path.join(ROOT, "secret", ".env");
@@ -191,10 +191,23 @@ async function analyzeMessage(message) {
   }
 
   if (!upstream.ok) {
-    const error = new Error(upstream.status === 429
-      ? "Layanan Gemini sedang sibuk atau kuota API habis. Coba lagi nanti."
-      : "Layanan Gemini gagal menganalisis pesan. Coba lagi sebentar.");
-    error.statusCode = upstream.status === 429 ? 503 : 502;
+    console.error(`Gemini API returned HTTP ${upstream.status}.`);
+    const messages = {
+      400: "Permintaan ditolak oleh Gemini. Periksa konfigurasi model atau coba lagi.",
+      401: "API key Gemini tidak valid. Periksa konfigurasi GEMINI_API_KEY.",
+      403: "API key Gemini tidak memiliki akses. Periksa izin dan pembatasan API key.",
+      404: "Model Gemini tidak ditemukan. Periksa konfigurasi GEMINI_MODEL."
+    };
+    const error = new Error(messages[upstream.status]
+      || (upstream.status === 429
+        ? "Layanan Gemini sedang sibuk atau kuota API habis. Coba lagi nanti."
+        : upstream.status >= 500
+          ? "Layanan Gemini sedang mengalami gangguan. Coba lagi sebentar."
+          : "Layanan Gemini gagal menganalisis pesan. Coba lagi sebentar."));
+    error.statusCode = upstream.status === 429 || upstream.status === 401
+      || upstream.status === 403 || upstream.status === 404 || upstream.status >= 500
+      ? 503
+      : 502;
     throw error;
   }
 
