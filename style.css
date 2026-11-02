@@ -75,8 +75,6 @@ textarea:focus { border-color: #9c89e4; box-shadow: 0 0 0 3px #7658d61a; }
 .input-icon { position: absolute; top: 13px; right: 15px; color: #b4a9d8; font-size: 22px; }
 .input-meta { display: flex; justify-content: space-between; padding: 9px 1px 0; color: #93949a; font-size: 9px; }
 .input-meta span:first-child { color: #777d79; }
-.consent-row { display: flex; align-items: flex-start; gap: 9px; margin-top: 13px; color: #70747e; font-size: 10px; line-height: 1.6; cursor: pointer; }
-.consent-row input { flex: 0 0 auto; margin: 2px 0 0; accent-color: var(--purple); }
 .form-actions { display: flex; align-items: center; gap: 15px; margin-top: 19px; }
 .check-button { padding: 12px 17px; border: 0; border-radius: 6px; background: var(--ink); color: white; cursor: pointer; font-size: 11px; font-weight: 700; transition: transform .18s, background .18s; }
 .check-button:hover { transform: translateY(-1px); background: var(--purple); }
