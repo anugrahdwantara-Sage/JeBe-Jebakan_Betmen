@@ -15,6 +15,14 @@ JeBe membantu anak muda Indonesia menilai pesan, tautan, atau postingan yang mer
 
 Perlu Node.js 20 atau lebih baru dan API key Gemini. Dapatkan API key melalui Google AI Studio. Jangan mengirim atau memasukkan API key ke source code atau chat.
 
+Simpan key lokal pada `secret/.env`:
+
+```text
+GEMINI_API_KEY=API_KEY_MILIKMU
+```
+
+Folder `secret/` diabaikan Git sehingga file dan isinya tidak ikut di-push. File `.env.example` di root hanya contoh konfigurasi tanpa key sungguhan. Alternatifnya, atur environment variable `GEMINI_API_KEY`. Jika keduanya ada, environment variable lebih diutamakan.
+
 Di PowerShell:
 
 ```powershell
@@ -22,7 +30,7 @@ $env:GEMINI_API_KEY = "API_KEY_MILIKMU"
 npm.cmd start
 ```
 
-Kemudian buka `http://localhost:3000`. Opsional: atur `GEMINI_MODEL` atau `PORT` melalui environment variable. `.env.example` menunjukkan nama konfigurasi; aplikasi tidak memuat file `.env` secara otomatis.
+Kemudian buka `http://localhost:3000`. Opsional: atur `GEMINI_MODEL` atau `PORT` melalui environment variable. Server membaca hanya `GEMINI_API_KEY` dari `secret/.env`; file `.env.example` tidak dibaca otomatis.
 
 ## Privasi dan batasan
 

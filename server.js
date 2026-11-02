@@ -11,6 +11,27 @@ const RATE_LIMIT_MAX_REQUESTS = 12;
 const requestsByAddress = new Map();
 const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
+function loadLocalGeminiApiKey() {
+  const filePath = path.join(ROOT, "secret", ".env");
+  if (!fs.existsSync(filePath)) return "";
+
+  const line = fs.readFileSync(filePath, "utf8")
+    .split(/\r?\n/)
+    .find((entry) => /^\s*GEMINI_API_KEY\s*=/.test(entry));
+  if (!line) return "";
+
+  const value = line.slice(line.indexOf("=") + 1).trim();
+  if (value.length >= 2 && (
+    (value.startsWith('"') && value.endsWith('"'))
+    || (value.startsWith("'") && value.endsWith("'"))
+  )) {
+    return value.slice(1, -1);
+  }
+  return value;
+}
+
+const localGeminiApiKey = loadLocalGeminiApiKey();
+
 const responseSchema = {
   type: "OBJECT",
   properties: {
@@ -116,7 +137,7 @@ function validateAnalysis(result) {
 }
 
 async function analyzeMessage(message) {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY || localGeminiApiKey;
   if (!apiKey) {
     const error = new Error("Server belum dikonfigurasi dengan GEMINI_API_KEY.");
     error.statusCode = 503;
