@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111827">
+    <meta name="description" content="Periksa pesan mencurigakan, kenali tanda bahayanya, dan cari tahu langkah aman berikutnya.">
+    <title>JeBe — Jadi Guardian Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="JeBe, kembali ke halaman utama">
+        <span class="brand-mark" aria-hidden="true">J<span>.</span></span>
+        <span>JeBe<span class="brand-sub">GUARDIAN DIGITAL</span></span>
+      </a>
+      <nav aria-label="Navigasi utama">
+        <a href="#checker">Cek pesan</a>
+        <a href="#cara-kerja">Cara kerja</a>
+      </nav>
+      <a class="top-cta" href="#checker">Mulai cek <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="pulse"></span> TEMAN AMAN DI RUANG DIGITAL</div>
+          <h1>Ragu sama pesan?<br><span>Cek dulu, yuk.</span></h1>
+          <p>Kenali tanda-tanda mencurigakan sebelum klik, balas, atau membagikannya. Kamu yang pegang kendali.</p>
+          <a class="hero-link" href="#checker">Periksa pesan sekarang <span aria-hidden="true">↓</span></a>
+          <div class="hero-note"><span aria-hidden="true">✳</span> Tanpa akun · Hasil personal · Gunakan dengan bijak</div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="visual-card">
+            <div class="visual-head"><span class="shield">✓</span><span>GUARDIAN MODE</span><span class="online-dot"></span></div>
+            <div class="visual-message">
+              <span class="message-label">PESAN MASUK</span>
+              <p>Selamat! Kamu memenangkan hadiah. Klaim sekarang sebelum hangus ⏰</p>
+              <div class="fake-link">bit.ly/hadiah-kamu <span>↗</span></div>
+            </div>
+            <div class="visual-warning"><span>!</span><div><strong>Waspada, ada tanda bahaya</strong><small>Tekanan waktu · tautan pendek</small></div></div>
+          </div>
+          <div class="spark spark-a">✳</div>
+          <div class="spark spark-b">✦</div>
+          <div class="visual-caption">Lebih teliti, lebih terlindungi.</div>
+        </div>
+      </section>
+
+      <section class="checker-section" id="checker">
+        <div class="section-heading">
+          <div class="eyebrow"><span class="heading-line"></span> CEK DENGAN TENANG</div>
+          <h2>Pesan apa yang bikin kamu ragu?</h2>
+          <p>Gemini akan membaca konteks pesanmu, menjelaskan tanda yang ditemukan, dan menyarankan langkah aman berikutnya.</p>
+        </div>
+        <div class="checker-card">
+          <form id="check-form">
+            <label for="message-input">ISI PESAN ATAU TAUTAN</label>
+            <div class="textarea-wrap">
+              <textarea id="message-input" maxlength="3000" placeholder="Contoh: Akun Anda akan diblokir! Verifikasi sekarang melalui tautan ini..." required aria-describedby="privacy-note char-count"></textarea>
+              <span class="input-icon" aria-hidden="true">⌁</span>
+            </div>
+            <div class="input-meta">
+              <span id="privacy-note"><span aria-hidden="true">🔒</span> Teks dikirim ke Google Gemini untuk dianalisis.</span>
+              <span id="char-count">0 / 3000</span>
+            </div>
+            <label class="consent-row" for="ai-consent">
+              <input id="ai-consent" type="checkbox" required>
+              <span>Saya setuju teks ini dikirim ke Google Gemini. Saya tidak akan memasukkan kata sandi, OTP, atau data pribadi.</span>
+            </label>
+            <div class="form-actions">
+              <button class="check-button" id="check-button" type="submit">Analisis dengan Gemini <span aria-hidden="true">↗</span></button>
+              <button class="clear-button" type="reset">Bersihkan</button>
+            </div>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="result" id="result" aria-live="polite" hidden>
+            <div class="result-top">
+              <div class="result-icon" id="result-icon" aria-hidden="true">!</div>
+              <div><div class="result-kicker" id="result-kicker"></div><h3 id="result-title"></h3></div>
+              <span class="result-badge" id="result-badge"></span>
+            </div>
+            <p class="result-summary" id="result-summary"></p>
+            <div class="findings" id="findings"></div>
+            <div class="next-step"><span class="next-icon" aria-hidden="true">✳</span><div><strong>Langkah aman berikutnya</strong><p id="next-step-text"></p></div></div>
+            <p class="disclaimer">Analisis AI dapat keliru dan bukan bukti pasti bahwa pesan aman atau penipuan. Gemini tidak membuka tautan. Verifikasi tetap melalui kanal resmi.</p>
+          </div>
+
+          <div class="examples">
+            <span>COBA CONTOH</span>
+            <button type="button" class="example-chip" data-example="win">🎁 Hadiah dadakan</button>
+            <button type="button" class="example-chip" data-example="job">💼 Tawaran kerja</button>
+            <button type="button" class="example-chip" data-example="normal">💬 Pesan biasa</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-section" id="cara-kerja">
+        <div class="how-title">
+          <div class="eyebrow"><span class="heading-line"></span> JADI GUARDIAN DIGITAL</div>
+          <h2>Berhenti sejenak.<br>Periksa. Baru bertindak.</h2>
+        </div>
+        <div class="steps">
+          <article class="step"><span class="step-number">01</span><div class="step-icon">⌕</div><h3>Kenali tandanya</h3><p>AI membantu membaca konteks, tekanan waktu, permintaan data, dan tautan yang terasa janggal.</p></article>
+          <article class="step"><span class="step-number">02</span><div class="step-icon">⏸</div><h3>Jangan terburu-buru</h3><p>Jangan klik atau membagikan pesan sebelum kamu yakin. Penipu sering membuat kita panik.</p></article>
+          <article class="step"><span class="step-number">03</span><div class="step-icon">↗</div><h3>Verifikasi & bantu</h3><p>Cek melalui aplikasi atau nomor resmi, lalu ingatkan orang terdekat dengan baik.</p></article>
+        </div>
+      </section>
+
+      <section class="bottom-cta">
+        <span class="cta-star" aria-hidden="true">✳</span>
+        <div><h2>Ragu itu wajar.<br><span>Berhati-hati itu kuat.</span></h2><p>Bantu jaga ruang digital tetap aman, mulai dari satu pesan.</p></div>
+        <a href="#checker">Cek pesanmu <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+    <footer><a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true">J<span>.</span></span><span>JeBe<span class="brand-sub">GUARDIAN DIGITAL</span></span></a><p>Dibuat untuk bantu kamu lebih waspada di ruang digital.</p><span>© 2026 JeBe · Periksa, bukan menghakimi.</span></footer>
+  </body>
+</html>
