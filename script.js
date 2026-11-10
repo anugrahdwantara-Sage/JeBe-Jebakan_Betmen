@@ -71,9 +71,18 @@ form.addEventListener("submit", async (event) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: text })
     });
-    const payload = await response.json();
+    const responseText = await response.text();
+    let payload;
+    try {
+      payload = responseText ? JSON.parse(responseText) : null;
+    } catch {
+      throw new Error(`Server analisis memberi respons yang tidak valid (HTTP ${response.status}). Periksa konfigurasi deployment.`);
+    }
     if (!response.ok) {
       throw new Error(payload.error || "Analisis belum berhasil. Coba lagi sebentar.");
+    }
+    if (!payload || typeof payload !== "object" || !payload.riskLevel || !Array.isArray(payload.signals)) {
+      throw new Error("Server analisis memberi respons kosong atau tidak lengkap. Periksa konfigurasi deployment.");
     }
     renderResult(payload);
     status.textContent = "";
