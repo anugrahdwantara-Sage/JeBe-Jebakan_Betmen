@@ -14,8 +14,8 @@ const rules = [
   {
     category: "Pembayaran",
     weight: 8,
-    pattern: /\b(?:transfer|bayar|setor|kirim uang|top up|isi saldo)\b.{0,60}\b(?:sekarang|dulu|biaya|admin|administrasi|pajak|deposit|jaminan|rekening|ke)\b|\b(?:biaya admin(?:istrasi)?|uang muka|deposit|biaya pendaftaran|biaya pencairan|biaya pajak)\b/i,
-    explanation: "Ada permintaan pembayaran atau biaya di muka. Pastikan alasan dan penerimanya melalui kanal resmi sebelum membayar."
+    pattern: /\b(?:transfer|bayar|membayar|setor|menyetor|kirim uang|mengirim uang|top up|isi saldo)\b.{0,70}\b(?:uang|nominal|rp|rupiah|biaya|admin|administrasi|pajak|deposit|jaminan|rekening|konfirmasi|verifikasi|pencairan|hadiah|sekarang|dulu|ke)\b|\b(?:biaya admin(?:istrasi)?|uang muka|deposit|biaya pendaftaran|biaya pencairan|biaya pajak|biaya konfirmasi|uang konfirmasi|transfer konfirmasi)\b/i,
+    explanation: "Pesan meminta transfer uang atau pembayaran, termasuk sebagai syarat konfirmasi. Jangan membayar untuk mengklaim hadiah sebelum memverifikasi penyelenggara melalui kanal resmi."
   },
   {
     category: "Tekanan waktu",

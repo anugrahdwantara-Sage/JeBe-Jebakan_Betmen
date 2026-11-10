@@ -32,3 +32,7 @@ JeBe tidak membuka tautan atau memverifikasi reputasi pengirim. Tautan yang terd
 ## Deployment
 
 Deploy aplikasi Node.js ini pada layanan yang mendukung Node.js 20+, gunakan perintah `npm start`, dan aktifkan HTTPS untuk deployment publik.
+
+### Netlify
+
+Konfigurasi [netlify.toml](./netlify.toml) mengatur root sebagai folder publik, mendaftarkan `netlify/functions` sebagai direktori Functions, dan meneruskan `/api/analyze` ke fungsi analisis. Hubungkan repository ke Netlify dan deploy ulang setelah perubahan ini; tidak perlu API key, build command, atau dependency tambahan. Pastikan pengaturan publish directory di Netlify tidak menimpa nilai `.` pada konfigurasi ini. Setelah deploy, coba alur analisis dari contoh hadiah dan pesan biasa.
