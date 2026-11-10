@@ -15,7 +15,7 @@ const checkButton = document.querySelector("#check-button");
 function renderResult(analysis) {
   const level = { HIGH: "high", MEDIUM: "medium", LOW: "low" }[analysis.riskLevel];
   result.dataset.level = level;
-  document.querySelector("#result-kicker").textContent = "ANALISIS AI GEMINI";
+  document.querySelector("#result-kicker").textContent = "ANALISIS BERBASIS ATURAN";
   document.querySelector("#result-icon").textContent = level === "high" ? "!" : level === "medium" ? "?" : "✓";
   document.querySelector("#result-title").textContent = analysis.title;
   document.querySelector("#result-badge").textContent = {
@@ -61,7 +61,7 @@ form.addEventListener("submit", async (event) => {
   }
 
   result.hidden = true;
-  status.textContent = "Gemini sedang membaca konteks pesanmu…";
+  status.textContent = "JeBe sedang memeriksa kata dan frasa dalam pesan…";
   status.dataset.state = "loading";
   checkButton.disabled = true;
 

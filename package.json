@@ -2,7 +2,7 @@
   "name": "jebe-guardian-digital",
   "version": "1.0.0",
   "private": true,
-  "description": "Pemeriksa pesan mencurigakan dengan Gemini API",
+  "description": "Pemeriksa pesan mencurigakan dengan aturan yang dapat dijelaskan",
   "scripts": {
     "start": "node server.js"
   },
